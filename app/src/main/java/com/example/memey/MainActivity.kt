@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadmeme(){
         // Instantiate the RequestQueue.
         binding.progress.visibility=View.VISIBLE
-        val queue = Volley.newRequestQueue(this)
+
         val url = "https://meme-api.com/gimme"
 
         val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url, null,
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                     override fun onLoadFailed(
                         e: GlideException?,
                         model: Any?,
-                        target: Target<Drawable>?, 
+                        target: Target<Drawable>?,
                         isFirstResource: Boolean
                     ): Boolean {
                         binding.progress.visibility=View.GONE
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         )
 
 // Add the request to the RequestQueue.
-        queue.add(jsonObjectRequest)
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
     fun share(view: View) {
         val intent=Intent(Intent.ACTION_SEND)
